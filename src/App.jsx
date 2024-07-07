@@ -39,14 +39,3 @@ function App() {
 }
 
 export default App;
-
-const App = () => {
-  const user = { followers: 200 };
-  return <UserCard user={user}></UserCard>;
-};
-
-const UserCard = ({ user }) => {
-  const [followers, setFollowers] = useState(user.followers);
-
-  return <div>{followers}</div>;
-};
