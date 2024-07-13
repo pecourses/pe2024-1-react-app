@@ -62,10 +62,6 @@ function NavLinks() {
   ];
 
   const mapNavList = nl => {
-    // const linkClassName = `${styles.navLink}${
-    //   nl.isActive ? ` ${styles.activeNavLink}` : ""
-    // }`;
-
     const linkClassName = classNames(styles.navLink, {
       [styles.activeNavLink]: nl.isActive,
     });
