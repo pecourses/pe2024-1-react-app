@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import styles from "./NavLinks.module.css";
 
 function NavLinks() {
@@ -61,9 +62,13 @@ function NavLinks() {
   ];
 
   const mapNavList = nl => {
-    const linkClassName = `${styles.navLink}${
-      nl.isActive ? ` ${styles.activeNavLink}` : ""
-    }`;
+    // const linkClassName = `${styles.navLink}${
+    //   nl.isActive ? ` ${styles.activeNavLink}` : ""
+    // }`;
+
+    const linkClassName = classNames(styles.navLink, {
+      [styles.activeNavLink]: nl.isActive,
+    });
 
     return (
       <li key={nl.icon}>
