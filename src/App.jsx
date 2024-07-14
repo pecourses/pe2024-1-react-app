@@ -1,9 +1,9 @@
-import NavLinks from "./components/NavLinks";
+import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
     <>
-      <NavLinks />
+      <LoginForm />
     </>
   );
 }
