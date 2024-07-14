@@ -28,15 +28,14 @@ function LoginForm() {
     setPassword("");
   };
 
-  const inputEmailClassName = classNames(styles.formInput, {
-    [styles.validInput]: LOGIN_FORM_REG_EXP.email.test(email),
-    [styles.invalidInput]: !LOGIN_FORM_REG_EXP.email.test(email),
-  });
+  const calcClassName = (name, value) => {
+    const isValueValid = LOGIN_FORM_REG_EXP[name].test(value);
 
-  const inputPasswordClassName = classNames(styles.formInput, {
-    [styles.validInput]: LOGIN_FORM_REG_EXP.password.test(password),
-    [styles.invalidInput]: !LOGIN_FORM_REG_EXP.password.test(password),
-  });
+    return classNames(styles.formInput, {
+      [styles.validInput]: isValueValid,
+      [styles.invalidInput]: !isValueValid,
+    });
+  };
 
   return (
     <div className={styles.formContainer}>
@@ -45,7 +44,7 @@ function LoginForm() {
         <label className={styles.formLabel}>
           <span className={styles.inputCaption}>Email: </span>
           <input
-            className={inputEmailClassName}
+            className={calcClassName("email", email)}
             type="email"
             name="email"
             value={email}
@@ -57,7 +56,7 @@ function LoginForm() {
         <label className={styles.formLabel}>
           <span className={styles.inputCaption}>Password: </span>
           <input
-            className={inputPasswordClassName}
+            className={calcClassName("password", password)}
             type="password"
             name="password"
             value={password}
