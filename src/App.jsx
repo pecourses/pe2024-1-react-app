@@ -1,9 +1,9 @@
-import LoginForm from "./components/LoginForm";
+import Weather from "./components/Weather";
 
 function App() {
   return (
     <>
-      <LoginForm />
+      <Weather />
     </>
   );
 }
