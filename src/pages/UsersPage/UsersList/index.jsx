@@ -3,7 +3,7 @@ import { PacmanLoader } from "react-spinners";
 import { loadUsers } from "../../../api";
 import UsersListItem from "./UsersListItem";
 
-function UsersList() {
+function UsersList({ fieldsFilter }) {
   const [users, setUsers] = useState([]);
   const [isFetching, setIsFetching] = useState(false); // чи іде завантаження
   const [error, setError] = useState(null); // помилка при завантаженні
@@ -25,11 +25,12 @@ function UsersList() {
   useEffect(() => {
     setIsFetching(true);
     setError(null);
-    loadUsers({ page, results })
+    // список полів для завантаження також передаємо в запит
+    loadUsers({ page, results, inc: fieldsFilter })
       .then(({ results }) => setUsers(results))
       .catch(e => setError(e))
       .finally(() => setIsFetching(false));
-  }, [page]);
+  }, [page, fieldsFilter]);
 
   const goPrevPage = () => {
     if (page > 1) {

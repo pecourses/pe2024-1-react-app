@@ -8,14 +8,20 @@ export const loadUsers = options => {
     page: 1,
     results: 10,
     seed: "pe2024",
+    inc: ["name", "gender", "login"],
   };
 
   const resultsOptions = {
     ...defaultOptions,
     ...options,
   };
-
-  return fetch(`${BASE_URL}?${queryString.stringify(resultsOptions)}`).then(
-    response => response.json()
-  );
+  // arrayFormat: "comma", означає, що з елементи масиву
+  //              перетворяться на значення, розділені комою:
+  //              inc: ["name", "gender", "login"] => 'inc=name,gender,login'
+  // Джерело: https://www.npmjs.com/package/query-string#arrayformat-1
+  return fetch(
+    `${BASE_URL}?${queryString.stringify(resultsOptions, {
+      arrayFormat: "comma",
+    })}`
+  ).then(response => response.json());
 };
