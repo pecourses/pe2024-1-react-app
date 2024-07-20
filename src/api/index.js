@@ -1,7 +1,10 @@
+import queryString from "query-string";
+
 export const loadUsers = options => {
   const defaultOptions = {
-    currentPage: 1,
+    page: 1,
     results: 10,
+    seed: "pe2024",
   };
 
   const resultsOptions = {
@@ -9,10 +12,8 @@ export const loadUsers = options => {
     ...options,
   };
 
-  const { currentPage, results } = resultsOptions;
-
   return fetch(
-    `https://randomuser.me/api/?page=${currentPage}&results=${results}&seed=pe2024`
+    `https://randomuser.me/api/?${queryString.stringify(resultsOptions)}`
   ).then(response => response.json());
 };
 

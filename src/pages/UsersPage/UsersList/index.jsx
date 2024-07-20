@@ -6,13 +6,14 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [isFetching, setIsFetching] = useState(false); // чи іде завантаження
   const [error, setError] = useState(null); // помилка при завантаженні
+  // TODO: rename to page
   const [currentPage, setCurrentPage] = useState(1);
   const [results, setResults] = useState(10);
 
   useEffect(() => {
     setIsFetching(true);
     setError(null);
-    loadUsers({ currentPage, results })
+    loadUsers({ page: currentPage, results })
       .then(({ results }) => setUsers(results))
       .catch(e => setError(e))
       .finally(() => setIsFetching(false));
