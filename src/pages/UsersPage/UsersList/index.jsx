@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { PacmanLoader } from "react-spinners";
+import { loadUsers } from "../../../api";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -11,10 +12,7 @@ function UsersList() {
   useEffect(() => {
     setIsFetching(true);
     setError(null);
-    fetch(
-      `https://randomuser.me/api/?page=${currentPage}&results=${results}&seed=pe2024`
-    )
-      .then(response => response.json())
+    loadUsers({ currentPage, results })
       .then(({ results }) => setUsers(results))
       .catch(e => setError(e))
       .finally(() => setIsFetching(false));
