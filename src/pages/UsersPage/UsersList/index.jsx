@@ -11,6 +11,18 @@ function UsersList() {
   const [results, setResults] = useState(10);
 
   useEffect(() => {
+    const savedPage = Number(window.localStorage.getItem("page"));
+    if (savedPage) {
+      setCurrentPage(savedPage);
+    }
+  }, []);
+
+  // працює без <React.StrictMode>
+  useEffect(() => {
+    window.localStorage.setItem("page", currentPage);
+  }, [currentPage]);
+
+  useEffect(() => {
     setIsFetching(true);
     setError(null);
     loadUsers({ page: currentPage, results })
@@ -34,11 +46,12 @@ function UsersList() {
         <button onClick={goPrevPage} disabled={currentPage === 1}>
           {"<"}
         </button>
+        <span>{currentPage}</span>
         <button onClick={goNextPage}>{">"}</button>
-      </div>
+      </div>{" "}
+      {error && <div style={{ color: "red" }}>ERROR !!!</div>}
+      {isFetching && <PacmanLoader color="green" speedMultiplier={1} />}
       <ul>
-        {error && <div style={{ color: "red" }}>ERROR !!!</div>}
-        {isFetching && <PacmanLoader color="green" speedMultiplier={1} />}
         {!error &&
           !isFetching &&
           users.map(u => (
