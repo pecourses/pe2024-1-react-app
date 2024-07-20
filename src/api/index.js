@@ -1,5 +1,8 @@
 import queryString from "query-string";
 
+// TODO move to constants.js
+const BASE_URL = "https://randomuser.me/api/";
+
 export const loadUsers = options => {
   const defaultOptions = {
     page: 1,
@@ -12,11 +15,7 @@ export const loadUsers = options => {
     ...options,
   };
 
-  return fetch(
-    `https://randomuser.me/api/?${queryString.stringify(resultsOptions)}`
-  ).then(response => response.json());
+  return fetch(`${BASE_URL}?${queryString.stringify(resultsOptions)}`).then(
+    response => response.json()
+  );
 };
-
-// currentPage: 1,
-// // results: 10,
-// results: 20
