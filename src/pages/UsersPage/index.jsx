@@ -28,6 +28,6 @@ export default UsersPage;
 // ------ControlPanel
 
 // App;
-// ---UsersPage
-// ------UsersList (ControlPanel)
-// ------FilterPanel
+// ---UsersPage - filter
+// ------UsersList (ControlPanel) - users
+// ------FilterPanel - change filter
