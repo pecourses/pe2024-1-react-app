@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { PacmanLoader } from "react-spinners";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ function UsersList() {
   return (
     <ul>
       {error && <div style={{ color: "red" }}>ERROR !!!</div>}
-      {isFetching && <div> Data loading... Please wait</div>}
+      {isFetching && <PacmanLoader color="green" speedMultiplier={1} />}
       {!error &&
         !isFetching &&
         users.map(u => (
