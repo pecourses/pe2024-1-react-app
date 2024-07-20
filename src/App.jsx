@@ -1,11 +1,7 @@
-import Weather from "./components/Weather";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
-  return (
-    <>
-      <Weather />
-    </>
-  );
+  return <UsersPage />;
 }
 
 export default App;

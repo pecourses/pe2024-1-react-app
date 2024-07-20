@@ -1,0 +1,25 @@
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-width: 300px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.filterContainer,
+.listContainer {
+  margin: 10px;
+  box-shadow: 0 0 5px lightskyblue;
+  padding: 10px;
+}
+
+.filterContainer {
+  flex: 1 1 200px;
+}
+
+.listContainer {
+  flex: 1 1 400px;
+}
