@@ -1,7 +1,8 @@
+import { addSeconds, format } from "date-fns";
 import { useEffect, useState } from "react";
 
 function StopWatch() {
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(new Date(0, 0, 0, 0, 0, 0, 0));
   const [isRunning, setIsRunning] = useState(false);
 
   const handleStartStop = () => {
@@ -13,11 +14,14 @@ function StopWatch() {
   };
 
   const tick = () => {
-    setTimer(timer => timer + 1);
+    setTimer(prevTimer => {
+      const newTimer = new Date(prevTimer.valueOf());
+      return addSeconds(newTimer, 1);
+    });
   };
 
   const reset = () => {
-    setTimer(0);
+    setTimer(new Date(0, 0, 0, 0, 0, 0, 0));
     setIsRunning(false);
   };
 
@@ -30,10 +34,10 @@ function StopWatch() {
       clearInterval(id);
     };
   });
-
+  console.log("timer :>> ", timer);
   return (
     <div>
-      {timer}
+      {format(timer, "mm:ss")}
       <div>
         <button onClick={handleStartStop}>
           {isRunning ? "Stop" : "Start"}
