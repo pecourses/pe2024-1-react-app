@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FilterPanel from "./FilterPanel";
 import UsersList from "./UsersList";
-import styles from "./UsersPage.module.css";
+import styles from "./UsersPage.module.sass";
 import CONSTANTS from "./../../constants";
 
 const { USER_FIELDS } = CONSTANTS;
