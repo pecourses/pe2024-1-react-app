@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ViewPortParams from "./components/VeiwPortParams";
+import StopWatch from "./components/StopWatch";
 
 function App() {
   const [isHidden, setIsHidden] = useState(true);
@@ -8,7 +8,7 @@ function App() {
       <button onClick={() => setIsHidden(!isHidden)}>
         {isHidden ? "Show" : "Hide"}
       </button>
-      {!isHidden && <ViewPortParams />}
+      {!isHidden && <StopWatch />}
     </>
   );
 }
