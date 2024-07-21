@@ -1,16 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ViewPortParams() {
+  const [sizes, setSizes] = useState({ width: 0, height: 0 });
+
+  const handleResize = () => {
+    setSizes({ width: window.innerWidth, height: window.innerHeight });
+  };
+
   useEffect(() => {
-    console.log("effect");
+    handleResize();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
     return () => {
-      console.log("cleanup effect");
+      window.removeEventListener("resize", handleResize);
     };
-  });
+  }, []);
+
   return (
     <div>
-      {console.log("render")}
-      ViewPortParams
+      <p>w: {sizes.width}</p>
+      <p>h: {sizes.height}</p>
     </div>
   );
 }
