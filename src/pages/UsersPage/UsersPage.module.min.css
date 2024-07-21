@@ -1,0 +1,1 @@
+.contentWrapper{display:flex;flex-direction:row;justify-content:space-between;align-items:start;gap:10px;flex-wrap:wrap;max-width:1000px;width:100%;margin:0 auto;padding:10px;background-color:#d3d3d3}.filterContainer,.listContainer{box-shadow:0 0 5px lightskyblue;padding:10px}.filterContainer{flex:1 1 200px}.listContainer{flex:1 1 400px}
