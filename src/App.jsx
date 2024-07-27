@@ -3,6 +3,9 @@ import classNames from "classnames";
 import { ThemeContext, UserContext } from "./contexts";
 import UserPage from "./pages/UserPage";
 import styles from "./App.module.sass";
+import CONSTANTS from "./constants";
+
+const { LIGHT, DARK, BLUE } = CONSTANTS.THEMES;
 
 function App() {
   const [user, setUser] = useState({
@@ -11,12 +14,12 @@ function App() {
     firstName: "Test",
     lastName: "Testovich",
   });
-  const [theme, setTheme] = useState("BLUE");
+  const [theme, setTheme] = useState(BLUE);
 
   const containerClassName = classNames(styles.container, {
-    [styles.light]: theme === "LIGHT",
-    [styles.dark]: theme === "DARK",
-    [styles.blue]: theme === "BLUE",
+    [styles.light]: theme === LIGHT,
+    [styles.dark]: theme === DARK,
+    [styles.blue]: theme === BLUE,
   });
 
   return (

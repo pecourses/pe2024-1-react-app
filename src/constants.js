@@ -1,4 +1,10 @@
 const CONSTANTS = {
+  THEMES: {
+    LIGHT: "LIGHT",
+    DARK: "DARK",
+    BLUE: "BLUE",
+  },
+
   // можливі значення для формування параметра рядка запиту:
   // вигляду "https://randomuser.me/api/?inc=gender,name,nat"
   // Джерело (розділ Including/Excluding fields):
