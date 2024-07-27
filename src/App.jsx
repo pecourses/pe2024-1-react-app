@@ -1,14 +1,13 @@
 import { Component } from "react";
+import CounterC from "./components/CounterC";
 
 class App extends Component {
   constructor(props) {
-    super(props); // this.props
+    super(props);
 
-    // const [step, setStep] = useState({step: 1})
     this.state = {
       step: 1,
     };
-    // this.state.step
   }
 
   changeStep = e => {
@@ -30,34 +29,3 @@ class App extends Component {
 }
 
 export default App;
-// Counter({step:1})              - function
-// new Counter({step:1}).render() - class
-class CounterC extends Component {
-  constructor(props) {
-    super(props); // this.props.step
-
-    this.state = {
-      count: 0,
-    };
-  }
-
-  dec = () => {
-    this.setState({ count: this.state.count - this.props.step });
-  };
-
-  inc = () => {
-    this.setState({ count: this.state.count + this.props.step });
-  };
-
-  // реалізувати inc
-  render() {
-    const countHello = "Count:";
-    return (
-      <div>
-        <button onClick={this.dec}>-</button>
-        {countHello} {this.state.count}
-        <button onClick={this.inc}>+</button>
-      </div>
-    );
-  }
-}
