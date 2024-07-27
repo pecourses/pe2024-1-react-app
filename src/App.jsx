@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { UserContext } from "./contexts";
+import classNames from "classnames";
+import { ThemeContext, UserContext } from "./contexts";
 import UserPage from "./pages/UserPage";
+import styles from "./App.module.sass";
+
 function App() {
   const [user, setUser] = useState({
     userSrc:
@@ -8,11 +11,32 @@ function App() {
     firstName: "Test",
     lastName: "Testovich",
   });
+  const [theme, setTheme] = useState("BLUE");
+
+  const containerClassName = classNames(styles.container, {
+    [styles.light]: theme === "LIGHT",
+    [styles.dark]: theme === "DARK",
+    [styles.blue]: theme === "BLUE",
+  });
 
   return (
-    <UserContext.Provider value={user}>
-      <UserPage />
-    </UserContext.Provider>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <UserContext.Provider value={user}>
+        <div className={containerClassName}>
+          <UserPage />
+        </div>
+      </UserContext.Provider>
+    </ThemeContext.Provider>
   );
 }
+
 export default App;
+
+// 1 контекст +
+// 2 прокинути контекст +
+// 3 зчитати контекст +
+
+// передбачити перелік тем
+// стилі для тем
+
+// додати перемикач для теми
