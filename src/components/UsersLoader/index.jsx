@@ -23,13 +23,20 @@ class UsersLoader extends Component {
 
   componentDidMount() {
     this.loadUsers();
+
+    const currentPage = Number(window.localStorage.getItem("page"));
+    if (currentPage) {
+      this.setState({ page: currentPage });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.page !== this.state.page) {
       this.loadUsers();
+      window.localStorage.setItem("page", this.state.page);
     }
   }
+
   prevPage = () =>
     this.setState({ page: this.state.page > 1 ? this.state.page - 1 : 1 });
 
