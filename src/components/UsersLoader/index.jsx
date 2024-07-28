@@ -10,6 +10,7 @@ class UsersLoader extends Component {
       error: null,
       page: 1,
     };
+    this.id = null;
   }
 
   loadUsers = () => {
@@ -28,6 +29,8 @@ class UsersLoader extends Component {
     if (currentPage) {
       this.setState({ page: currentPage });
     }
+
+    this.id = setInterval(this.nextPage, 1000);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -35,6 +38,10 @@ class UsersLoader extends Component {
       this.loadUsers();
       window.localStorage.setItem("page", this.state.page);
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.id);
   }
 
   prevPage = () =>
