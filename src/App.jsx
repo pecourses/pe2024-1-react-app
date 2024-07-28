@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import {
   Link,
   NavLink,
+  Outlet,
   Route,
   BrowserRouter as Router,
   Routes,
@@ -18,17 +19,29 @@ const linkStyle = ({ isActive }) =>
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<BasePage />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
+function BasePage() {
+  return (
+    <>
+      <Header />
+      {/* Вбудуй що потрібно */}
+      <Outlet />
+      <footer>Footer</footer>
+    </>
+  );
+}
 
 function Header() {
   return (
