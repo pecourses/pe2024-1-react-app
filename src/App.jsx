@@ -22,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<BasePage />}>
           <Route index element={<Home />} />
+          <Route path="/partners/*" element={<PartnersPage />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Route>
@@ -31,6 +32,27 @@ function App() {
 }
 
 export default App;
+// /partners/partners1
+// /partners/partners2
+function PartnersPage() {
+  return (
+    <div>
+      <h1>Partners</h1>
+      <nav>
+        <NavLink to="partner1" style={linkStyle}>
+          Partner 1
+        </NavLink>
+        <NavLink to="partner2" style={linkStyle}>
+          Partner 2
+        </NavLink>
+      </nav>
+      <Routes>
+        <Route path="partner1" element={<div>Partner1</div>} />
+        <Route path="partner2" element={<div>Partner2</div>} />
+      </Routes>
+    </div>
+  );
+}
 
 function BasePage() {
   return (
@@ -52,6 +74,11 @@ function Header() {
           <li>
             <NavLink to="/" style={linkStyle}>
               Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/partners" style={linkStyle}>
+              Partners
             </NavLink>
           </li>
           <li>
