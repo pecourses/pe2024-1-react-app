@@ -3,7 +3,6 @@ import { Component } from "react";
 class UsersLoader extends Component {
   constructor(props) {
     super(props);
-    console.log("constructor");
 
     this.state = {
       users: [],
@@ -12,29 +11,24 @@ class UsersLoader extends Component {
     };
   }
 
-  // cdm
   componentDidMount() {
-    console.log("mount");
+    this.setState({ isFetching: true });
+    fetch(`https://randomuser.me/api?page=1&results=5&seed=js`)
+      .then(response => response.json())
+      .then(data => this.setState({ users: data.results }))
+      .catch(err => this.setState({ error: err }))
+      .finally(() => this.setState({ isFetching: false }));
   }
 
-  // cdup
-  componentDidUpdate(prevProps, prevState) {
-    console.log("update");
-  }
-
-  //cwun
-  componentWillUnmount() {
-    console.log("unmount");
-  }
-  click = () => {
-    console.log("setState");
-    this.setState({ isFetching: !this.state.isFetching });
-  };
   render() {
-    console.log("render");
+    const { users, isFetching, error } = this.state;
     return (
       <div>
-        <button onClick={this.click}>+</button>
+        {isFetching && <div>Loading... Please wait.</div>}
+        {error && <div>ERROR</div>}
+        {!isFetching &&
+          !error &&
+          users.map(u => <li key={u.login.uuid}>{JSON.stringify(u)}</li>)}
       </div>
     );
   }
