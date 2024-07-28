@@ -18,12 +18,7 @@ const linkStyle = ({ isActive }) =>
 function App() {
   return (
     <Router>
-      <NavLink to="/" style={linkStyle}>
-        Home
-      </NavLink>
-      <NavLink to="/about" style={linkStyle}>
-        About
-      </NavLink>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -34,6 +29,28 @@ function App() {
 }
 
 export default App;
+
+function Header() {
+  return (
+    <header>
+      <h1>My App</h1>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" style={linkStyle}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" style={linkStyle}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
 
 function NotFound() {
   const navigate = useNavigate();
