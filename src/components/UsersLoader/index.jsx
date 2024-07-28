@@ -30,6 +30,8 @@ class UsersLoader extends Component {
       this.loadUsers();
     }
   }
+  prevPage = () =>
+    this.setState({ page: this.state.page > 1 ? this.state.page - 1 : 1 });
 
   nextPage = () => this.setState({ page: this.state.page + 1 });
 
@@ -37,7 +39,7 @@ class UsersLoader extends Component {
     const { users, isFetching, error } = this.state;
     return (
       <div>
-        <button>prev</button>
+        <button onClick={this.prevPage}>prev</button>
         <button onClick={this.nextPage}>next</button>
         {isFetching && <div>Loading... Please wait.</div>}
         {error && <div>ERROR</div>}
