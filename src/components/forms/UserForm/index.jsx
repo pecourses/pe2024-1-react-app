@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { USER_NAME_SCHEMA } from "../../utils/validationSchemas";
+import { USER_NAME_SCHEMA } from "../../../utils/validationSchemas";
 
 // Formik взяв на себе керуванням станом керованого компонента
 // + містить шаблонний код його обробників
