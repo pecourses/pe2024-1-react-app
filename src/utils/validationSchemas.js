@@ -1,5 +1,16 @@
 import * as yup from "yup";
 
+export const USER_NAME_SCHEMA = yup.object({
+  userName: yup
+    .string()
+    .trim()
+    .min(2)
+    .max(32)
+    .matches(/^[A-Z]/)
+    .required(),
+});
+
+/**************************************************/
 // 1 Визначення схеми
 const LOGIN_SCHEMA = yup.object({
   login: yup.string().trim().email().required(),
@@ -16,9 +27,9 @@ const LOGIN_SCHEMA = yup.object({
 const userLogin = { login: "    u@mail", password: "1!QQQQQQwQQ" };
 
 // 2 Перевірка об'єкта за схемою
-LOGIN_SCHEMA.validate(userLogin)
-  .then(data => console.log(data))
-  .catch(err => console.log(err.errors));
+// LOGIN_SCHEMA.validate(userLogin)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err.errors));
 
 //  Реалізувати схему для об'єкта, що містить інфо про авто у вгляді:
 // {
@@ -49,6 +60,6 @@ const car = {
   number: "CE1111AA",
 };
 
-CAR_SCHEMA.validate(car)
-  .then(data => console.log(data))
-  .catch(err => console.log(err.errors));
+// CAR_SCHEMA.validate(car)
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err.errors));
