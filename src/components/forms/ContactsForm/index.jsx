@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import classNames from "classnames";
 import { CONTACTS_VALIDATION_SCHEMA } from "../../../utils/validationSchemas";
 import styles from "./ContactsForm.module.sass";
+import Input from "../Input";
 
 // Name, Tel, Email, Birthday
 // userName, phoneNumber, email, birthday
@@ -18,6 +19,15 @@ function ContactsForm() {
     formikBag.resetForm();
   };
 
+  const classes = {
+    error: styles.error,
+    input: styles.input,
+    valid: styles.valid,
+    invalid: styles.invalid,
+    label: styles.label,
+    caption: styles.inputCaption,
+  };
+
   return (
     <div>
       <Formik
@@ -25,99 +35,41 @@ function ContactsForm() {
         onSubmit={handleSubmit}
         validationSchema={CONTACTS_VALIDATION_SCHEMA}
       >
-        {formikProps => {
-          const userNameClassName = classNames(styles.input, {
-            [styles.valid]:
-              !formikProps.errors.userName && formikProps.touched.userName,
-            [styles.invalid]:
-              formikProps.errors.userName && formikProps.touched.userName,
-          });
+        <Form className={styles.form}>
+          <Input
+            name="userName"
+            label="Name:"
+            type="text"
+            placeholder="Name"
+            classes={classes}
+            autoFocus
+          />
 
-          const phoneClassName = classNames(styles.input, {
-            [styles.valid]:
-              !formikProps.errors.phoneNumber &&
-              formikProps.touched.phoneNumber,
-            [styles.invalid]:
-              formikProps.errors.phoneNumber && formikProps.touched.phoneNumber,
-          });
+          <Input
+            name="phoneNumber"
+            label="Phone number:"
+            type="text"
+            placeholder="+380123456789"
+            classes={classes}
+          />
 
-          const emailClassName = classNames(styles.input, {
-            [styles.valid]:
-              !formikProps.errors.email && formikProps.touched.email,
-            [styles.invalid]:
-              formikProps.errors.email && formikProps.touched.email,
-          });
+          <Input
+            name="email"
+            label="Email:"
+            type="email"
+            placeholder="your@mail"
+            classes={classes}
+          />
 
-          const birthdayClassName = classNames(styles.input, {
-            [styles.valid]:
-              !formikProps.errors.birthday && formikProps.touched.birthday,
-            [styles.invalid]:
-              formikProps.errors.birthday && formikProps.touched.birthday,
-          });
-
-          return (
-            <Form className={styles.form}>
-              <label className={styles.label}>
-                <span className={styles.inputCaption}>Name: </span>
-                <Field
-                  className={userNameClassName}
-                  type="text"
-                  name="userName"
-                  placeholder="User Name"
-                  autoFocus
-                />
-                <ErrorMessage
-                  className={styles.error}
-                  name="userName"
-                  component="span"
-                />
-              </label>
-              <label className={styles.label}>
-                <span className={styles.inputCaption}>Phone: </span>
-                <Field
-                  className={phoneClassName}
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="+380XXXXXXXXX"
-                />
-                <ErrorMessage
-                  className={styles.error}
-                  name="phoneNumber"
-                  component="span"
-                />
-              </label>
-              <label className={styles.label}>
-                <span className={styles.inputCaption}>Email: </span>
-                <Field
-                  className={emailClassName}
-                  type="email"
-                  name="email"
-                  placeholder="your@mail"
-                />
-                <ErrorMessage
-                  className={styles.error}
-                  name="email"
-                  component="span"
-                />
-              </label>
-              <label className={styles.label}>
-                <span className={styles.inputCaption}>Date of Birth: </span>
-                <Field
-                  className={birthdayClassName}
-                  type="date"
-                  name="birthday"
-                />
-                <ErrorMessage
-                  className={styles.error}
-                  name="birthday"
-                  component="span"
-                />
-              </label>
-              <button type="submit">Save</button>
-              <button type="reset">Reset</button>
-            </Form>
-          );
-        }}
+          <Input
+            name="birthday"
+            label="Birthday:"
+            type="date"
+            classes={classes}
+          />
+          <button type="submit">Save</button>
+          <button type="reset">Reset</button>
+        </Form>
       </Formik>
     </div>
   );
