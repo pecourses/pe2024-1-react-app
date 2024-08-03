@@ -10,6 +10,24 @@ export const USER_NAME_SCHEMA = yup.object({
     .required(),
 });
 
+export const CONTACTS_VALIDATION_SCHEMA = yup.object({
+  userName: yup
+    .string()
+    .trim()
+    .min(2)
+    .max(32)
+    .matches(/^[A-Z]/)
+    .required(),
+  phoneNumber: yup
+    .string()
+    .trim()
+    .length(13)
+    .matches(/^\+380\d{9}$/, "Number must correspond format +380XXXXXXXXX")
+    .required(),
+  email: yup.string().email(),
+  birthday: yup.date().max(new Date()),
+});
+
 /**************************************************/
 // 1 Визначення схеми
 const LOGIN_SCHEMA = yup.object({
