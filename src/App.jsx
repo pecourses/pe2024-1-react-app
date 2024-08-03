@@ -1,7 +1,7 @@
-import UsersLoader from "./components/UsersLoader";
+import * as yup from "yup";
 
 function App() {
-  return <UsersLoader />;
+  return <div></div>;
 }
 
 export default App;
