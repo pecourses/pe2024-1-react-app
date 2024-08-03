@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 // 1 Визначення схеми
 const LOGIN_SCHEMA = yup.object({
   login: yup.string().trim().email().required(),
